@@ -1,0 +1,16 @@
+<div class="row" *ngIf="router.url === '/speakers' || router.url === '/sessions'"
+     style="margin-top: 0; margin-bottom: 0;">
+  <div class="large-9 medium-10 small-12 columns left" style="margin-top: 0; margin-bottom: 0;">
+
+    <div class="expanded button-group" style=" margin-bottom: 0;height:89px;">
+      <a routerLinkActive="secondary" class="button" routerLink="/sessions"><h4 style="margin-top: 13px;">PDG
+        sessions</h4></a>
+
+      <a routerLinkActive="secondary" class="button" routerLink="/speakers">
+        <h4 class="hide-for-small-only" style="margin-top: 13px;">Speaker management</h4>
+        <h4 class="show-for-small-only" style="margin-top: 0px;">Speaker management</h4>
+      </a>
+    </div>
+
+  </div>
+</div>

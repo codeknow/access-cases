@@ -1,0 +1,22 @@
+<div class="top-bar"
+     style="border-bottom: 5px solid #616161; background-color: #e0e0e0">
+
+  <div class="row columns">
+
+    <div class="small-6  ">
+      <em class="float-left" style="margin-left: -8px; margin-top: 8px; margin-bottom: 7px;">
+         Admin
+      </em>
+    </div>
+
+    <div class="small-6 large-2  float-right">
+      <a *ngIf="authService.isAuthenticated()" (click)="onLogout()"
+         class="button small clear expanded  msu1_2"
+         style="margin-bottom: 0px; margin-top: 0px; margin-left:5px; font-weight: 300;"
+         routerLink="/login"><em>LOGOUT</em>
+        <i class="fa fa-sign-out" aria-hidden="true" style="margin-left:21px;"></i>
+      </a>
+    </div>
+  </div>
+
+</div>

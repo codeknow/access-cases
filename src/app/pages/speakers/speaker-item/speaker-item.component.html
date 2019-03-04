@@ -1,0 +1,49 @@
+<div class="grid-container fluid button expanded"
+     style="cursor: pointer; margin-top: -3px; margin-bottom: 0; border-top: #6eceb2 solid 1px; z-index: -1;"
+     [routerLink]="[index+'/edit']" routerLinkActive="active">
+
+  <div class="grid-x grid-margin-x show-for-small-only">
+
+    <div class="cell small-4">
+      <h5 class="text-justify" style="margin-bottom: 0;text-transform: uppercase;">
+        {{speaker.a_speaker_id}}
+      </h5>
+    </div>
+
+    <div class="cell small-4">
+      <h5 class="text-justify" style="margin-bottom: 0;">
+        {{speaker.speaker_name_first}}
+      </h5>
+    </div>
+    <div class="cell small-4">
+      <h5 class="text-justify" style="margin-bottom: 0;">
+        {{speaker.speaker_name_last}}
+      </h5>
+    </div>
+
+  </div>
+
+
+  <div class="grid-x grid-margin-x show-for-medium ">
+
+    <div class="cell small-3">
+      <h5 class="text-justify" style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase;">
+        {{speaker.a_speaker_id}}
+      </h5>
+    </div>
+
+    <div class="cell small-3">
+      <h5 class="text-justify" style=" margin-bottom: 0; margin-left: 0px;">
+        {{speaker.speaker_name_first}}
+      </h5>
+    </div>
+    <div class="cell small-3">
+      <h5 class="text-justify" style="margin-bottom: 0;margin-left: 0px;">
+        {{speaker.speaker_name_last}}
+      </h5>
+    </div>
+
+  </div>
+
+
+</div>

@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="small-12 medium-7 large-5 columns small-centered">
+
+    <form (ngSubmit)="onSignup(f)" #f="ngForm" data-abide novalidate>
+
+      <h3 class="text-center" style="font-weight: 600;"><em>Create Admin</em></h3>
+
+      <label>Admin email
+        <small style="color: #d81b60">required</small>
+        <input type="email" id="email" name="email"
+               ngModel required pattern="email"
+               placeholder="user@admin.test.com">
+        <span class="form-error">
+          Email is required.
+        </span>
+      </label>
+      <label>Admin password
+        <small style="color: #d81b60">required</small>
+        <input minlength="6" type="password" id="password" name="password"
+               placeholder="Password" ngModel required>
+        <span class="form-error">
+          Password is required.
+        </span>
+      </label>
+
+      <p>
+        <input type="submit" class="button warning expanded" value="Create">
+      </p>
+
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="grid-container fluid button expanded"
+     style="cursor: pointer; margin-top: -3px; margin-bottom: 0; border-top: #6eceb2 solid 1px; z-index: -1;"
+     [routerLink]="[index+'/edit']" routerLinkActive="active">
+
+  <!--show for small only-->
+  <div class="grid-x grid-margin-x show-for-small-only">
+
+    <div class="cell small-4">
+      <h5 class="text-justify" style="margin-bottom: 0;text-transform: uppercase;">
+        {{session.a_session_id}}
+      </h5>
+    </div>
+
+    <div class="cell small-4">
+      <h5 class="text-justify" style="margin-bottom: 0;text-transform: uppercase;">
+        {{session.b_speaker_id}}
+
+      </h5>
+    </div>
+    <div class="cell small-4">
+      <h5 class="text-justify" style="margin-bottom: 0;">
+        <!--{{session.session_start_date_month}}, {{session.session_start_date_day}}-->
+        {{session.session_location_city}}
+      </h5>
+    </div>
+  </div>
+  <!---->
+
+
+  <!--show for medium and up-->
+  <div class="grid-x grid-margin-x show-for-medium" style="">
+
+    <div class="cell small-2">
+      <h5 class="text-justify" style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase;">
+        {{session.a_session_id}}
+      </h5>
+    </div>
+
+    <div class="cell small-1">
+      <i style="margin-top: -3px; font-size: 1.8rem;" class="fa fa-check-circle-o" aria-hidden="true"></i>
+
+      <!--<i style="margin-top: -3px; font-size: 1.8rem; color: #ff2d6f" class="fa fa-times-circle" aria-hidden="true"></i>-->
+
+    </div>
+
+    <div class="cell small-2">
+      <h5 class="text-justify" style=" margin-bottom: 0; margin-left: 0px; text-transform: uppercase;">
+        {{session.b_speaker_id}}
+      </h5>
+    </div>
+
+    <div class="cell small-2">
+      <h5 class="text-justify" style=" margin-bottom: 0; margin-left: 0px;">
+        {{session.session_start_date_month}}, {{session.session_start_date_day}}
+      </h5>
+    </div>
+
+    <div class="cell small-2">
+      <h5 class="text-justify" style=" margin-bottom: 0; margin-left: 0px;">
+        {{session.session_location_city}}
+      </h5>
+    </div>
+
+    <div class="cell small-1">
+      <h5 class="text-justify" style=" margin-bottom: 0; margin-left: 0px;">
+        {{session.session_location_state}}
+      </h5>
+    </div>
+
+    <div class="cell small-2"></div>
+
+  </div>
+
+</div>
+

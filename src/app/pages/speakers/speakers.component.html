@@ -1,0 +1,121 @@
+<div class="row" *ngIf="router.url === '/speakers'" style="margin-top: 0;">
+
+  <div class="small-12 columns">
+    <app-tabs-title (featuredSelected)="onNavigate($event)"></app-tabs-title>
+  </div>
+
+  <div class="small-12 columns">
+    <div class="row column" style="margin-top:-3px; margin-bottom: 89px;">
+
+      <div class="grid-container fluid" style="z-index: 1;">
+
+        <div class="grid-x grid-margin-x show-for-small-only text-center"
+             style="border: 1px solid #242424; background-color: #e0e0e0; font-size: 0.8rem;
+               height:34px; padding-top: 5px; font-weight: 500; color: #212121;">
+
+          <div class="cell small-4">
+            <h6 class="text-justify" style="margin-bottom: 0;text-transform: uppercase;">
+              Speaker ID
+            </h6>
+          </div>
+
+          <div class="cell small-4">
+            <h6 class="text-justify" style="margin-bottom: 0;">
+              First Name
+            </h6>
+          </div>
+          <div class="cell small-4">
+            <h6 class="text-justify" style="margin-bottom: 0;">
+              Last Name
+            </h6>
+          </div>
+        </div>
+
+        <div class="grid-x grid-margin-x show-for-medium"
+             style="border: 1px solid #242424; background-color: #e0e0e0;
+             font-size: 0.8rem; height:34px; padding-top: 5px; margin-bottom: 41px;
+             font-weight: 500; color: #212121;">
+
+          <div class="cell small-3">
+            <div class="row">
+
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                Speaker ID
+              </h6>
+              <input type="text" [(ngModel)]="speakerFilter.a_speaker_id" placeholder="Filter"
+                     style="margin-top: 9px; margin-left: 1px; border-left: #1b4353 solid 1px; text-transform: uppercase"
+                     maxlength="7">
+            </div>
+
+          </div>
+          <div class="cell small-3">
+            <div class="row">
+
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                First Name
+              </h6>
+              <input type="text" [(ngModel)]="speakerFilter.speaker_name_first" placeholder="Filter"
+                     style="margin-top: 9px; border-left: #1b4353 solid 1px; text-transform: uppercase">
+            </div>
+
+          </div>
+          <div class="cell small-3">
+            <div class="row">
+
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                Last Name
+              </h6>
+              <input type="text" [(ngModel)]="speakerFilter.speaker_name_last" placeholder="Filter"
+                     style="margin-top: 9px; border-left: #1b4353 solid 1px; text-transform: uppercase">
+            </div>
+
+          </div>
+
+
+          <div class="cell small-3">
+            <div class="row" style="">
+              <a class="button warning expanded" (click)="onResetSpeaker()"
+                 style="margin-top: 28px; margin-left: -1px;  text-transform: uppercase;
+                 font-weight: 400; border-right: #1b4353 solid 1px; height: 38px;">
+                <em>
+                  Refresh Filter
+                </em>
+                <i class="fa fa-refresh " aria-hidden="true" style="margin-left: 21px;"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <app-speaker-item
+        *ngFor="let speakerEl of speakers | filterBy: speakerFilter; let i = index"
+        [speaker]="speakerEl" [index]="i">
+      </app-speaker-item>
+
+      <a (click)="onResetSpeaker()">
+        <div class="grid-container fluid expanded text-center "
+             *ngIf="(speakers | filterBy: speakerFilter).length === 0"
+             style="margin-top: -3px; margin-bottom: 0; border: #1b4353 solid 1px; background-color: #ff2d6f;">
+          <h4 style="color: #f2f2f2; margin-top: 3px; margin-bottom: 5px;">
+            <em>
+              Oops! <br>
+              'Click' to Refresh
+            </em>
+          </h4>
+
+        </div>
+      </a>
+
+
+    </div>
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>

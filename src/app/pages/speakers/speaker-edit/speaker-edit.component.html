@@ -1,0 +1,257 @@
+<div class="row">
+
+  <div class="large-3 medium-5 small-12 columns float-left">
+    <button class="button warning expanded" type="button"
+            (click)="onBack()"
+            style="margin-top: -5px; text-transform: uppercase;">
+      <i class="fa fa-angle-double-left" aria-hidden="true"
+         style=" margin-right: 34px; font-size: 1rem; font-weight: 600"></i>
+      <b style="margin-bottom:-5px;font-weight: 400">
+        <em>
+          Back to Filter
+        </em>
+      </b>
+    </button>
+  </div>
+
+  <div class="large-8 medium-7 small-12 columns float-right hide-for-small-only" style="margin-top: 5px;">
+    <h3 *ngIf="router.url !== '/speakers/build'" class="float-right" style="margin-bottom: 5px; font-weight: 500;">
+      Edit This Speaker
+    </h3>
+
+    <h3 *ngIf="router.url === '/speakers/build'" class="float-right" style="margin-bottom: 5px; font-weight: 500;">
+      New Speaker Details
+    </h3>
+  </div>
+
+  <div class="large-8 medium-7 small-12 columns show-for-small-only" style="margin-top: -5px;">
+    <h3 *ngIf="router.url !== '/speakers/build'" class=""
+        style="margin-top:13px; margin-bottom: 21px; font-weight: 500;">
+      Edit This Speaker
+    </h3>
+
+    <h3 *ngIf="router.url === '/speakers/build'" class=""
+        style="margin-top:13px; margin-bottom: 21px; font-weight: 500;">
+      New Speaker Details
+    </h3>
+  </div>
+
+</div>
+
+<form [formGroup]="speakerForm" (ngSubmit)="onSubmit()" data-abide novalidate>
+
+  <div class="row">
+
+    <div class="small-12 large-6 columns float-right">
+
+      <div class="row columns">
+
+        <div class="small-12 columns callout small zd1" style="background-color:#eeeeee;">
+
+          <!--title-->
+          <div class="row">
+            <div class="small-8 columns">
+
+              <h5 class="hide-for-small-only">Speaker Info</h5>
+              <h3 class="show-for-small-only" style="font-weight: 500;">Speaker Info</h3>
+
+            </div>
+          </div>
+
+          <!---->
+          <div class="row">
+            <div class="small-12 large-6 columns">
+
+              <label *ngIf="router.url !== '/speakers/build'">Speaker ID
+                <input type="text"
+                       style="text-transform: uppercase;"
+                       name="a_speaker_id" disabled
+                       formControlName="a_speaker_id">
+              </label>
+
+              <label *ngIf="router.url === '/speakers/build'">Speaker ID
+                <small style="color: #d81b60">required</small>
+                <input type="text" placeholder="Add Speaker ID"
+                       required maxlength="7" minlength="7" pattern=".{7,}"
+                       name="a_speaker_id" id="a_speaker_id"
+                       formControlName="a_speaker_id" style="text-transform: uppercase;">
+                <span class="form-error">
+                  Speaker ID is required.
+                </span>
+
+              </label>
+
+            </div>
+          </div>
+          <!---->
+
+
+          <!---->
+          <div class="row">
+            <div class="small-12 columns">
+              <label>Speaker name </label>
+            </div>
+            <div class="small-6 columns">
+              <input type="text" placeholder="First Name" id="speaker_name_first"
+                     formControlName="speaker_name_first">
+            </div>
+            <div class="small-6 columns float-left">
+              <input type="text" placeholder="Last Name" id="speaker_name_last" formControlName="speaker_name_last">
+            </div>
+
+          </div>
+          <!---->
+
+
+        </div>
+      </div>
+
+      <div class="row columns">
+        <div class="small-12 columns callout small zd1" style="background-color:#eeeeee;">
+
+          <div class="row">
+            <div class="small-12 columns">
+              <label>Speaker bio
+
+                <textarea rows="5" cols="34" style="resize: none;" placeholder="Enter bio"
+                          name="speaker_bio" id="speaker_bio" formControlName="speaker_bio"></textarea>
+
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row columns show-for-large">
+        <button class="button large success expanded" style="margin-bottom: 0px; color: #eceff1" type="submit"
+                [disabled]="!speakerForm.valid">
+          <span *ngIf="router.url !== '/speakers/build'">
+            Save This Speaker
+            <i style="margin-left: 21px;" class="fa fa-floppy-o" aria-hidden="true"></i>
+          </span>
+
+          <span *ngIf="router.url === '/speakers/build'">
+            Create New Speaker
+            <i style="margin-left: 21px;" class="fa fa-plus-circle" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="small-12 large-5 columns">
+
+      <div class="row ">
+        <div class="small-12 columns">
+
+          <input style="display: none" type="file" (change)="onImgSelected($event)" #fileInput accept=".png,.jpg"/>
+          <a (click)="fileInput.click()" class="text-center" style="width: 100%" accept=".png,.jpg">
+
+            <div class="callout">
+              <h1><b>+</b></h1>
+              <br>
+
+              <em class="text-center">add photo</em>
+            </div>
+
+          </a>
+
+          <!--progress start-->
+          <div class="progress" role="progressbar" tabindex="0"
+               [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0"
+               aria-valuetext="0 percent" aria-valuemax="100">
+            <div class="progress-meter" [style.width.%]="(uploadProgress | async)">
+              <h5 class="progress-meter-text" style="color: #fafafa">
+                {{uploadProgress | async | number : '1.2-2' }} %
+              </h5>
+            </div>
+          </div>
+
+          <input type="text" id="speaker_photo" formControlName="speaker_photo" style="display: none;">
+        </div>
+      </div>
+
+      <div class="row" *ngIf="speaker_photo_path_string">
+        <div class="small-12 columns float-left">
+          <img src="{{speaker_photo_path_string}}" class="zd1" style="margin-bottom: 13px;">
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="small-12 columns">
+
+          <button class="button large success expanded show-for-small-only" style="margin-bottom: 0px;color: #eceff1"
+                  type="submit"
+                  [disabled]="!speakerForm.valid">
+
+              <span *ngIf="router.url !== '/speakers/build'">
+                Save This Session
+                <i style="margin-left: 21px;" class="fa fa-floppy-o" aria-hidden="true"></i>
+              </span>
+
+            <span *ngIf="router.url === '/speakers/build'">
+                Create New Speaker
+                <i style="margin-left: 21px;" class="fa fa-plus-circle" aria-hidden="true"></i>
+              </span>
+
+          </button>
+
+
+
+        </div>
+      </div>
+      <div class="row " *ngIf="router.url !== '/speakers/build'">
+        <div class="small-12 large-7 columns ">
+
+          <hr  class="show-for-small-only">
+
+          <button class="button alert expanded" type="button"
+                  (click)="onDeleteSpeaker()">
+            Delete This Speaker
+            <i class="fa fa-minus-circle" aria-hidden="true" style="margin-left: 21px;"></i>
+          </button>
+
+          <!--<p>-->
+            <!--&lt;!&ndash;<button class="button" data-open="exampleModal1">Click me for a modal</button>&ndash;&gt;-->
+
+            <!--<a href="#" class="button" data-open="exampleModal1">-->
+              <!--Click me for a modal-->
+            <!--</a>-->
+          <!--</p>-->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</form>
+
+
+<div class="reveal" id="exampleModal1" data-reveal>
+  <h1>Awesome. I Have It.</h1>
+  <p class="lead">Your couch. It is mine.</p>
+  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!--<div class="tiny reveal" id="are_you_sure_popup" data-reveal>-->
+  <!--<h5>Delete This Speaker?</h5>-->
+  <!--<div class="button-group">-->
+
+    <!--<a class="alert button" data-close> No, Cancel</a>-->
+
+    <!--&lt;!&ndash;<button class="button success" type="button" (click)="onDeleteSpeaker()" data-close style="color: #fafafa">&ndash;&gt;-->
+      <!--&lt;!&ndash;Yes, I'm Sure&ndash;&gt;-->
+    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+
+    <!--<a class="button success" type="button" data-close style="color: #fafafa">-->
+      <!--Yes, I'm Sure-->
+    <!--</a>-->
+
+  <!--</div>-->
+<!--</div>-->
+

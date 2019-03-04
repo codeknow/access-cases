@@ -1,0 +1,32 @@
+<div class="row" style="margin-top: 0;" *ngIf="router.url === '/sessions' || router.url === '/speakers' ">
+
+  <div class="large-5 medium-7 small-12 columns ">
+
+    <div class="button-group expanded " style="margin-top:-5px; margin-bottom: 21px;">
+      <button class="button medium warning zd1" (click)="onNewSession()" style="font-weight: 600;"> New Session
+      </button>
+
+      <button class="button medium warning zd1" (click)="onNewSpeaker()" style="font-weight: 600;"> New Speaker
+      </button>
+    </div>
+
+  </div>
+
+  <div class="small-12 columns">
+
+    <h2 *ngIf="router.url === '/sessions'" style=" margin-bottom: 13px;">
+      <em>
+        PDG sessions
+      </em>
+    </h2>
+
+    <h2 *ngIf="router.url === '/speakers'" style="margin-bottom: 13px;">
+      <em>
+        Speaker management
+      </em>
+    </h2>
+    <hr class="hide-for-small-only" style="margin-top: -5px;">
+  </div>
+
+</div>
+

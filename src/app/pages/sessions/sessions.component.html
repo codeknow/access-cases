@@ -1,0 +1,162 @@
+<div class="row" *ngIf="router.url === '/sessions'" style="margin-top: 0;">
+
+  <div class="small-12 columns">
+    <app-tabs-title (featuredSelected)="onNavigate($event)"></app-tabs-title>
+  </div>
+
+  <div class="small-12 columns">
+    <div class="row column" style="margin-top:-3px; margin-bottom: 89px;">
+
+      <div class="grid-container fluid" style="z-index: 1;">
+
+        <!--show for small only-->
+        <div class="grid-x grid-margin-x show-for-small-only text-center"
+             style="border: 1px solid #242424; background-color: #e0e0e0; font-size: 0.8rem;
+             height:34px; padding-top: 5px; font-weight: 500; color: #212121;">
+
+          <div class="cell small-4">
+            <h6 class="text-justify" style="margin-bottom: 0;text-transform: uppercase;">
+              Program <span class="hide-for-small-only">code</span>
+            </h6>
+          </div>
+
+          <div class="cell small-4">
+            <h6 class="text-justify" style="margin-bottom: 0;text-transform: uppercase;">
+              Speaker ID
+            </h6>
+          </div>
+          <div class="cell small-4">
+            <h6 class="text-justify" style="margin-bottom: 0;">
+              City
+            </h6>
+          </div>
+        </div>
+
+        <!--show for medium-up-->
+        <div class="grid-x grid-margin-x show-for-medium"
+             style="border: 1px solid #242424; background-color: #e0e0e0;
+             font-size: 0.8rem; height:34px; padding-top: 5px; margin-bottom: 41px;
+             font-weight: 500; color: #212121;">
+
+          <div class="cell small-2">
+            <div class="row">
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                Program code
+              </h6>
+              <input type="text" [(ngModel)]="sessionFilter.a_session_id" placeholder="Filter"
+                     style="margin-top: 9px; margin-left: 1px; border-left: #1b4353 solid 1px; text-transform: uppercase" maxlength="7">
+            </div>
+          </div>
+
+          <div class="cell small-1">
+            <div class="row">
+
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                Is Active
+              </h6>
+
+              <div class="switch large"
+                   style="margin-top: 8px; margin-left: 6px;
+                   border-bottom: #1b4353 solid 1px;  border-left: #1b4353 solid 1px; padding-top: -13px;">
+
+                <input class="switch-input" id="yes-no-large" type="checkbox" name="exampleSwitch" checked>
+                <label class="switch-paddle" for="yes-no-large" style="height: 38px; width: 90px; ">
+                  <span class="switch-active" aria-hidden="true">Yes</span>
+                  <span class="switch-inactive" aria-hidden="true" style="color: #242424">No</span>
+                </label>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="cell small-2">
+            <div class="row">
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                Speaker ID
+              </h6>
+              <input type="text" [(ngModel)]="sessionFilter.b_speaker_id" placeholder="Filter"
+                     style="margin-top: 9px; margin-left: 1px; border-left: #1b4353 solid 1px; text-transform: uppercase" maxlength="7">
+            </div>
+          </div>
+
+          <div class="cell small-2 ">
+            <div class="row">
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                Month
+              </h6>
+              <input type="text" [(ngModel)]="sessionFilter.session_start_date_month" placeholder="Filter" maxlength="9"
+                     style="margin-top: 9px; margin-left: 1px; border-left: #1b4353 solid 1px; text-transform: uppercase">
+            </div>
+          </div>
+
+          <div class="cell small-2">
+            <div class="row">
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                City
+              </h6>
+              <input type="text" [(ngModel)]="sessionFilter.session_location_city" placeholder="Filter"
+                     style="margin-top: 9px; margin-left: 1px; border-left: #1b4353 solid 1px; text-transform: uppercase" maxlength="34">
+            </div>
+          </div>
+
+          <div class="cell small-1">
+            <div class="row">
+              <h6 class="text-justify"
+                  style="margin-bottom: 0; margin-left: 8px;text-transform: uppercase; font-weight: 500;">
+                State
+              </h6>
+              <input type="text" [(ngModel)]="sessionFilter.session_location_state" placeholder="Filter"
+                     style="margin-top: 9px; margin-left: 1px; border-left: #1b4353 solid 1px;text-transform: uppercase" maxlength="2">
+            </div>
+          </div>
+
+          <div class="cell small-2">
+            <div class="row" style="">
+              <a class="button warning expanded" (click)="onResetSession()"
+                 style="margin-top: 28px; margin-left: -1px;
+                 text-transform: uppercase; font-weight: 400; border-right: #1b4353 solid 1px; height: 38px;">
+                <em>
+                  Refresh Filter
+                </em>
+                <i class="fa fa-refresh " aria-hidden="true" style="margin-left: 21px;"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <app-session-item
+        *ngFor="let sessionEl of sessions | filterBy: sessionFilter; let i = index"
+        [session]="sessionEl" [index]="i">
+      </app-session-item>
+
+
+      <a (click)="onResetSession()">
+        <div class="grid-container fluid expanded text-center "
+             *ngIf="(sessions | filterBy: sessionFilter).length === 0"
+             style="margin-top: -3px; margin-bottom: 0; border: #1b4353 solid 1px; background-color: #ff2d6f;">
+          <h4 style="color: #f2f2f2; margin-top: 3px; margin-bottom: 5px;">
+            <em>
+              Oops! <br>
+              'Click' to Refresh
+            </em>
+          </h4>
+
+        </div>
+      </a>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>
